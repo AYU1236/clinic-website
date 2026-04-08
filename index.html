@@ -4,23 +4,27 @@
     <title>Saraswati Clinic</title>
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <header>
-      <h1>Saraswati Aushadhalaya सरस्वती औषधालय</h1>
-      <h2>Dr.Ashutosh Malviya</h2>
+    <header class="header">
+      <div class="logo">Saraswati Clinic</div>
+      <div class="doctor-name">Dr. Ashutosh Malviya</div>
     </header>
-
     <nav>
       <a href="#">Home</a>
       <a href="#about">About Doctor</a>
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
+      <button id="theme-toggle" type="button" aria-label="Switch to light theme">Light</button>
     </nav>
-    <section class="home">
-      <div class="home-text">
-        <h1>Swasthya Aushadhalaya(Health Clinic / Dispensary)</h1>
+    <section class="home" data-aos="fade-up">
+      <div class="home-text" data-aos="fade-right" data-aos-delay="100">
+        <h1>Swasthya Aushadhalaya (Health Clinic / Dispensary)</h1>
         <h2>Dr. Ashutosh Malviya</h2>
         <p>
           Welcome to Saraswati Clinic. Dr. Ashutosh Malviya provides natural and
@@ -32,12 +36,12 @@
           <button>Book Appointment</button>
         </a>
       </div>
-      <div class="home-image">
+      <div class="home-image" data-aos="fade-left" data-aos-delay="200">
         <img src="doctor.jpg" alt="Doctor" />
       </div>
     </section>
-    <section id="about">
-      <h2>About Doctor</h2>
+    <section id="about" data-aos="fade-up" data-aos-delay="150">
+      <h2 class="section-title">About Doctor</h2>
       <div class="about-box">
         <h3>Dr. Ashutosh Malviya</h3>
         <p>
@@ -95,8 +99,34 @@
         </div>
       </div>
     </section>
-    <section id="contact">
-      <h2>Contact Us</h2>
+    <section id="services" data-aos="fade-up" data-aos-delay="120">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+          <h3>Ayurvedic Consultation</h3>
+          <p>
+            Personalized natural care designed around your body type and health
+            goals.
+          </p>
+        </div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+          <h3>Digestive Wellness</h3>
+          <p>
+            Effective treatment for stomach, liver, and digestive disorders with
+            herbal therapies.
+          </p>
+        </div>
+        <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+          <h3>Respiratory Support</h3>
+          <p>
+            Traditional Ayurvedic care for breathing, pneumonia, and respiratory
+            balance.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="contact" data-aos="fade-up" data-aos-delay="150">
+      <h2 class="section-title">Contact Us</h2>
       <div class="contact-container">
         <div class="contact-card">
           <h3>Clinic Address</h3>
@@ -116,8 +146,8 @@
         </div>
       </div>
     </section>
-    <section id="map">
-      <h2>Our Location</h2>
+    <section id="map" data-aos="fade-up" data-aos-delay="150">
+      <h2 class="section-title">Our Location</h2>
       <div class="map-box">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.24874111502!2d81.84627128711533!3d25.46336836297218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399aca96f15fcad7%3A0x84e2337aea97144!2zU2FyYXN3YXRpIEF1c2hhZGhhbGF5YSDgpLjgpLDgpLjgpY3gpLXgpKTgpYAg4KSU4KS34KSn4KS-4KSy4KSv!5e0!3m2!1sen!2sin!4v1773549964866!5m2!1sen!2sin"
@@ -133,5 +163,40 @@
     <footer>
       <p>© 2026 Saraswati Clinic</p>
     </footer>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 900,
+        easing: "ease-out-cubic",
+        once: true,
+      });
+
+      const body = document.body;
+      const themeToggle = document.getElementById("theme-toggle");
+
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        body.classList.add("light-mode");
+      }
+
+      function updateThemeButton() {
+        const isLight = body.classList.contains("light-mode");
+        themeToggle.textContent = isLight ? "Dark" : "Light";
+        themeToggle.setAttribute(
+          "aria-label",
+          isLight ? "Switch to dark theme" : "Switch to light theme"
+        );
+      }
+
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+        const isLight = body.classList.contains("light-mode");
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+        updateThemeButton();
+      });
+
+      updateThemeButton();
+    </script>
   </body>
 </html>
